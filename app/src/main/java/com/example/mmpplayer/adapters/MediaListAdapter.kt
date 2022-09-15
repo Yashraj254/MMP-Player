@@ -10,10 +10,9 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.mmpplayer.MusicPlayerActivity
-import com.example.mmpplayer.MyMediaPlayer
+import com.example.mmpplayer.music.MusicPlayerActivity
 import com.example.mmpplayer.R
-import com.example.mmpplayer.VideoPlayerActivity
+import com.example.mmpplayer.video.VideoPlayerActivity
 import com.example.mmpplayer.databinding.VideoItemBinding
 import com.example.mmpplayer.model.Media
 import java.text.DecimalFormat
@@ -45,13 +44,11 @@ class MediaListAdapter(private val activity: Activity, private val context: Cont
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         holder.bind(differ.currentList[position])
         holder.itemView.setOnClickListener {
-            MyMediaPlayer.getInstance()
-            MyMediaPlayer.currentIndex = position
 
             val mediaList:ArrayList<Media> = ArrayList(differ.currentList)
             if(mediaType == "Videos")
             {
-                val intent = Intent(activity,VideoPlayerActivity::class.java)
+                val intent = Intent(activity, VideoPlayerActivity::class.java)
                 intent.putParcelableArrayListExtra("videos_list", mediaList)
                 intent.putExtra("video_position",position)
                 intent.putExtra("folder_id",folderId)
@@ -62,8 +59,9 @@ class MediaListAdapter(private val activity: Activity, private val context: Cont
 //                Navigation.findNavController(it).navigate(R.id.action_specific_folder_media_fragment_to_videoPlayerFragment,bundle)
             }
             if(mediaType == "Music"){
-                val intent = Intent(activity,MusicPlayerActivity::class.java)
+                val intent = Intent(activity, MusicPlayerActivity::class.java)
                 intent.putParcelableArrayListExtra("songs_list", mediaList)
+                intent.putExtra("music_position",position)
                 activity.startActivity(intent)
 
             }

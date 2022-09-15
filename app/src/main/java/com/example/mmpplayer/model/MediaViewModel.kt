@@ -1,4 +1,4 @@
-package com.example.mmpplayer.video
+package com.example.mmpplayer.model
 
 import android.app.Application
 import android.os.Build
@@ -6,8 +6,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import com.example.mmpplayer.model.Folder
-import com.example.mmpplayer.model.Media
+import com.example.mmpplayer.database.MyMediaRepository
 
 class MediaViewModel(context: Application, private val repository: MyMediaRepository) :
     AndroidViewModel(context) {

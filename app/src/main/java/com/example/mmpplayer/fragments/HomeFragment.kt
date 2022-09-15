@@ -46,14 +46,15 @@ class HomeFragment : Fragment() {
         binding.lvMediaItems.adapter = simpleAdapter
 
         binding.lvMediaItems.setOnItemClickListener { adapterView, view, i, l ->
-            val bundle = Bundle()
+
             if(i==0){
-                bundle.putString("media_type","Music")
+                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_musicFragmentHolder)
             }
             if(i==1){
-                bundle.putString("media_type","Videos")
+
+                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_videoFragmentHolder)
             }
-            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_mediaFragmentHolder,bundle)
+
         }
         return view
     }

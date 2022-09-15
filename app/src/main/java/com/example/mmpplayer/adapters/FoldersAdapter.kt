@@ -8,12 +8,11 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mmpplayer.MyMediaPlayer
 import com.example.mmpplayer.R
 import com.example.mmpplayer.databinding.MusicItemBinding
 import com.example.mmpplayer.model.Folder
 
-class FoldersAdapter(private val mediaType:String,private val activity: Activity) :
+class FoldersAdapter(private val mediaType: String, private val activity: Activity) :
     RecyclerView.Adapter<FoldersAdapter.FoldersViewHolder>() {
 
     private val callback = object : DiffUtil.ItemCallback<Folder>() {
@@ -25,7 +24,7 @@ class FoldersAdapter(private val mediaType:String,private val activity: Activity
             return oldItem == newItem
         }
     }
-    val differ = AsyncListDiffer(this,callback)
+    val differ = AsyncListDiffer(this, callback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoldersViewHolder {
         val binding: MusicItemBinding =
@@ -38,16 +37,22 @@ class FoldersAdapter(private val mediaType:String,private val activity: Activity
     override fun onBindViewHolder(holder: FoldersViewHolder, position: Int) {
         holder.bind(differ.currentList[position])
         holder.itemView.setOnClickListener {
-            MyMediaPlayer.getInstance()
-            MyMediaPlayer.currentIndex = position
 
-            val foldersList =  ArrayList(differ.currentList)
+
+            val foldersList = ArrayList(differ.currentList)
             val bundle = Bundle().apply {
                 putString("media_type", mediaType)
                 putString("folder_id", foldersList[position].id)
             }
-            Navigation.findNavController(it)
-                .navigate(R.id.action_mediaFragmentHolder_to_specificFolderMediaFragment, bundle)
+            if (mediaType == "Videos")
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_navigation_video_folders_to_specificFolderVideosFragment,
+                        bundle)
+            else
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_navigation_folders_to_specificFolderMediaFragment,
+                        bundle)
+
 
 //            val intent = Intent(activity,SpecificFolderMediaActivity::class.java)
 //            intent.putExtra("media_type", mediaType)

@@ -1,8 +1,10 @@
-package com.example.mmpplayer.video
+package com.example.mmpplayer.model
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.mmpplayer.database.MyMediaDataSource
+import com.example.mmpplayer.database.MyMediaRepository
 import kotlinx.coroutines.Dispatchers
 
 class MediaViewModelFactory(private val app: Application) : ViewModelProvider.AndroidViewModelFactory(app){

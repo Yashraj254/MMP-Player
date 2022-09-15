@@ -1,41 +1,55 @@
-package com.example.mmpplayer
+package com.example.mmpplayer.music
 
+import android.content.ComponentName
+import android.content.Intent
+import android.content.ServiceConnection
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
+import android.os.IBinder
 import android.os.Looper
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+import com.example.mmpplayer.R
 import com.example.mmpplayer.databinding.ActivityMusicPlayerBinding
 import com.example.mmpplayer.model.Media
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-class MusicPlayerActivity : AppCompatActivity() {
+class MusicPlayerActivity : AppCompatActivity(), ServiceConnection {
     private lateinit var binding: ActivityMusicPlayerBinding
-    private lateinit var songsList: ArrayList<Media>
     private lateinit var runnable: Runnable
     private var handler: Handler = Handler(Looper.getMainLooper())
-    private val mediaPlayer: MediaPlayer = MyMediaPlayer.getInstance()
     private lateinit var currentSong: Media
+
+    companion object {
+        var musicService: MusicService? = null
+        lateinit var songsList: ArrayList<Media>
+        var position: Int = 0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMusicPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val intents = Intent(this, MusicService::class.java)
+        bindService(intents, this, BIND_AUTO_CREATE)
+        startService(intents)
         binding.tvSongTitle.isSelected = true
         songsList = intent.getSerializableExtra("songs_list") as ArrayList<Media>
-        mediaPlayer.reset()
-        setResourcesWithMusic()
+        position = intent.getIntExtra("music_position", 0)
 
+    }
+
+    private fun changeProgress() {
         this.runOnUiThread(object : Runnable {
             override fun run() {
                 binding.apply {
-                    sbMusic.progress = mediaPlayer.currentPosition
-                    binding.tvStart.text = convertToMMSS(mediaPlayer.currentPosition.toString())
-                    if (mediaPlayer.isPlaying)
+                    sbMusic.progress = musicService!!.mediaPlayer!!.currentPosition
+                    binding.tvStart.text =
+                        convertToMMSS(musicService!!.mediaPlayer!!.currentPosition.toString())
+                    if (musicService!!.mediaPlayer!!.isPlaying)
                         ivPlayPause.setImageResource(R.drawable.ic_pause)
                     else
                         ivPlayPause.setImageResource(R.drawable.ic_play)
@@ -45,9 +59,10 @@ class MusicPlayerActivity : AppCompatActivity() {
         })
         runnable = Runnable {
             binding.apply {
-                sbMusic.progress = mediaPlayer.currentPosition
-                binding.tvStart.text = convertToMMSS(mediaPlayer.currentPosition.toString())
-                if (mediaPlayer.isPlaying)
+                sbMusic.progress = musicService!!.mediaPlayer!!.currentPosition
+                binding.tvStart.text =
+                    convertToMMSS(musicService!!.mediaPlayer!!.currentPosition.toString())
+                if (musicService!!.mediaPlayer!!.isPlaying)
                     ivPlayPause.setImageResource(R.drawable.ic_pause)
                 else
                     ivPlayPause.setImageResource(R.drawable.ic_play)
@@ -59,9 +74,8 @@ class MusicPlayerActivity : AppCompatActivity() {
         binding.sbMusic.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
                 if (p2)
-                    mediaPlayer.seekTo(progress)
+                    musicService!!.mediaPlayer!!.seekTo(progress)
             }
-
             override fun onStartTrackingTouch(p0: SeekBar?) {
 
             }
@@ -72,8 +86,10 @@ class MusicPlayerActivity : AppCompatActivity() {
         })
     }
 
-    private fun setResourcesWithMusic() {
-        currentSong = songsList.get(MyMediaPlayer.currentIndex)
+    private fun setMusicPlayer() {
+        if (musicService!!.mediaPlayer == null)
+            musicService!!.mediaPlayer = MediaPlayer()
+        currentSong = songsList[position]
 
         binding.apply {
             tvSongTitle.text = currentSong.title
@@ -83,18 +99,18 @@ class MusicPlayerActivity : AppCompatActivity() {
             ivPlayPause.setOnClickListener { pausePlayMusic() }
         }
         playMusic()
-
+        changeProgress()
     }
 
     private fun playMusic() {
-        mediaPlayer.reset()
+        musicService!!.mediaPlayer!!.reset()
         try {
-            mediaPlayer.setDataSource(currentSong.path)
-            mediaPlayer.prepare()
-            mediaPlayer.start()
+            musicService!!.mediaPlayer!!.setDataSource(currentSong.path)
+            musicService!!.mediaPlayer!!.prepare()
+            musicService!!.mediaPlayer!!.start()
             binding.apply {
                 sbMusic.progress = 0
-                sbMusic.max = mediaPlayer.duration
+                sbMusic.max = musicService!!.mediaPlayer!!.duration
             }
         } catch (e: IOException) {
             e.printStackTrace()
@@ -102,34 +118,35 @@ class MusicPlayerActivity : AppCompatActivity() {
     }
 
     private fun pausePlayMusic() {
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.pause()
+        if (musicService!!.mediaPlayer!!.isPlaying) {
+            musicService!!.mediaPlayer!!.pause()
             binding.ivPlayPause.setImageResource(R.drawable.ic_pause)
         } else {
-            mediaPlayer.start()
+            musicService!!.mediaPlayer!!.start()
             binding.ivPlayPause.setImageResource(R.drawable.ic_play)
         }
     }
 
     private fun prevMusic() {
-        if (MyMediaPlayer.currentIndex == 0)
+        if (position == 0)
             return
-        MyMediaPlayer.currentIndex--
-        mediaPlayer.reset()
-        setResourcesWithMusic()
+        position--
+        musicService!!.mediaPlayer!!.reset()
+        setMusicPlayer()
     }
 
     private fun nextMusic() {
-        if (MyMediaPlayer.currentIndex == songsList.size - 1)
+        if (position == songsList.size - 1)
             return
-        MyMediaPlayer.currentIndex++
-        mediaPlayer.reset()
-        setResourcesWithMusic()
+        position++
+        musicService!!.mediaPlayer!!.reset()
+        setMusicPlayer()
     }
 
 
     private fun convertToMMSS(duration: String): String {
         val milliseconds = duration.toLong()
+
         // long minutes = (milliseconds / 1000) / 60;
         val minutes = TimeUnit.MILLISECONDS.toMinutes(milliseconds) % TimeUnit.HOURS.toMinutes(1)
 
@@ -137,4 +154,16 @@ class MusicPlayerActivity : AppCompatActivity() {
         val seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds) % TimeUnit.MINUTES.toSeconds(1)
         return String.format("%02d:%02d", minutes, seconds)
     }
+
+    override fun onServiceConnected(p0: ComponentName?, service: IBinder?) {
+        val binder = service as MusicService.MyBinder
+        musicService = binder.currentService()
+        setMusicPlayer()
+        musicService!!.showNotification()
+    }
+
+    override fun onServiceDisconnected(p0: ComponentName?) {
+        musicService = null
+    }
+
 }

@@ -6,16 +6,58 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:fitsSystemWindows="true"
-    tools:context=".VideoPlayerActivity">
+    tools:context=".video.VideoPlayerActivity">
 
-    <com.google.android.exoplayer2.ui.PlayerView
+
+    <Button
+        android:id="@+id/btn_brightness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:drawableLeft="@drawable/ic_brightness"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#42000000"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+ <Button
+        android:id="@+id/btn_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:drawableLeft="@drawable/ic_volume"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#42000000"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.github.vkay94.dtpv.DoubleTapPlayerView
         android:id="@+id/video_player"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:show_buffering="always"
         android:keepScreenOn="true"
-        app:controller_layout_id="@layout/customized_control_view">
+        app:dtpv_controller="@id/ytOverlay"
+        app:controller_layout_id="@layout/customized_control_view"/>
+    <com.github.vkay94.dtpv.youtube.YouTubeOverlay
+        android:id="@+id/ytOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:yt_playerView="@id/video_player"
+        android:visibility="gone"/>
 
-    </com.google.android.exoplayer2.ui.PlayerView>
+</FrameLayout>
 
 
     <LinearLayout
@@ -48,7 +90,6 @@
             android:text="Video Name"
             android:textColor="#FFFFFF" />
 
-
     </LinearLayout>
 
     <ImageButton
@@ -71,6 +112,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/rotateButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/transparent"
+            app:srcCompat="@drawable/ic_rotate" />
 
         <ImageButton
             android:id="@+id/prevButton"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E43470"
-    tools:context=".MusicPlayerActivity">
+    tools:context=".music.MusicPlayerActivity">
 
     <TextView
         android:id="@+id/tv_song_title"
@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/ic_next" />
+
     </LinearLayout>
 
     <SeekBar
@@ -84,4 +85,26 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/sb_music"
         app:layout_constraintTop_toBottomOf="@+id/sb_music" />
+
+    <ImageView
+        android:id="@+id/iv_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_weight="1"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/tv_total_time"
+        app:layout_constraintTop_toBottomOf="@+id/sb_music"
+        app:srcCompat="@drawable/ic_favorites" />
+
+    <ImageView
+        android:id="@+id/iv_add_to_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/tv_total_time"
+        app:layout_constraintTop_toBottomOf="@+id/sb_music"
+        app:srcCompat="@drawable/ic_add_to_favorites" />
 </androidx.constraintlayout.widget.ConstraintLayout>

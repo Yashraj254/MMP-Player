@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/navigation_music"
+    android:title="Music"
+    android:icon="@drawable/ic_videos"/>
+
+    <item android:id="@+id/navigation_music_folders"
+    android:title="Folders"
+    android:icon="@drawable/ic_folders"/>
+
+    <item android:id="@+id/navigation_favorites"
+    android:title="Favorites"
+    android:icon="@drawable/ic_favorites"/>
+
+    <item android:id="@+id/navigation_playlist"
+    android:title="Playlists"
+    android:icon="@drawable/ic_playlist"/>
+</menu>
