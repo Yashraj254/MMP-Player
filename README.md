@@ -16,15 +16,19 @@ A media player app using compose and Hilt based on modern Android tech-stacks an
 
 ## Screenshots
 <p align="center">
-<img src="previews/Screenshot_20221008-142431.jpg" width="200" height = "400">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="previews/Screenshot_20221008-142431.jpg" width="200" height = "400">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="previews/Screenshot_20221008-142431.jpg" width="200" height = "400">
+
+<img src="previews/Screenshot_20221008-142442.jpg" width="200" height = "400">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/Screenshot_20221008-142447.jpg" width="200" height = "400">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/Screenshot_20221008-142450.jpg" width="200" height = "400">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/Screenshot_20221008-142517.jpg" width="200" height = "400">&nbsp;&nbsp;&nbsp;&nbsp;
+
 </p>
 
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
 - Hilt for dependency injection.
+- Room database to create playlists and add favourites.
 
 - Architecture
   - MVVM Architecture (Declarative View - ViewModel - Model)
