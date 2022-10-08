@@ -16,7 +16,9 @@ A media player app using compose and Hilt based on modern Android tech-stacks an
 
 ## Screenshots
 <p align="center">
-
+<img src="previews/Screenshot_20221008-142431.jpg" width="200" height = "400">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/Screenshot_20221008-142431.jpg" width="200" height = "400">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/Screenshot_20221008-142431.jpg" width="200" height = "400">
 </p>
 
 ## Tech stack & Open-source libraries
