@@ -7,7 +7,8 @@ A media player app using compose and Hilt based on modern Android tech-stacks an
 
 <p align="center">
   <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
-  <a href="https://github.com/Yashraj254"><img alt="Profile" src="https://Yashraj254.github.io/badges/Yashraj254.svg"/></a> 
+  <a href="https://github.com/Yashraj254"><img alt="Profile" src="https://img.shields.io/badge/Github-Yashraj-green?&logo=github"/></a> 
+ 
 </p>
 
 ## Download
