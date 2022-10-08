@@ -10,7 +10,7 @@
         android:id="@+id/iv_video_thumb"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_selected_item"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/video_image" />
 
@@ -48,4 +48,14 @@
         android:text="Date added"
         app:layout_constraintBottom_toBottomOf="@+id/iv_video_thumb"
         app:layout_constraintStart_toEndOf="@+id/tv_video_size" />
+
+    <ImageView
+        android:id="@+id/iv_selected_item"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_video_thumb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_check" />
 </androidx.constraintlayout.widget.ConstraintLayout>

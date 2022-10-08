@@ -1,15 +1,18 @@
 package com.example.mmpplayer
 
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Message
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.mmpplayer.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -44,9 +47,5 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this,
                 arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 123)
     }
-
-    override fun onStop() {
-        super.onStop()
-        Log.i("Fragments", "onStop: Main Activity")
-    }
 }
+

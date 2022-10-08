@@ -40,16 +40,22 @@
             android:id="@id/exo_position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             android:text="00:00"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
 
- <TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
             android:text=":"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -60,9 +66,10 @@
             android:id="@id/exo_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Loading..."
 
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:text="Loading..."
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />

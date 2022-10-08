@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.mmpplayer">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <application
-        android:name=".database.ApplicationClass"
+        android:name=".database.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -42,6 +41,8 @@
             </intent-filter>
         </activity>
         <service android:name=".music.MusicService"/>
+        <receiver android:name=".music.NotificationMusicReceiver"
+            android:enabled="true"/>
     </application>
 
 </manifest>

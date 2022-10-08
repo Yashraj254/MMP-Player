@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/music_nav"
+    app:startDestination="@id/navigation_music">
+
+    <fragment
+        android:id="@id/navigation_favorites"
+        android:name="com.example.mmpplayer.music.favourites.FavoriteMusicFragment"
+        android:label="fragment_favorite_music"
+        tools:layout="@layout/fragment_favorite_music" />
+    <fragment
+        android:id="@id/navigation_playlist"
+        android:name="com.example.mmpplayer.music.playlists.MusicPlaylistFragment"
+        android:label="fragment_music_playlist"
+        tools:layout="@layout/fragment_music_playlist" >
+        <action
+            android:id="@+id/action_navigation_playlist_to_playlistsAllMusicFragment"
+            app:destination="@id/playlistsAllMusicFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@id/navigation_music"
+        android:name="com.example.mmpplayer.music.allMusic.AllMusicFragment"
+        android:label="fragment_all_media"
+        tools:layout="@layout/fragment_all_music" />
+    <fragment
+        android:id="@id/navigation_music_folders"
+        android:name="com.example.mmpplayer.music.folders.MusicFoldersFragment"
+        android:label="fragment_media_all_folders"
+        tools:layout="@layout/fragment_video_folders" >
+        <action
+            android:id="@+id/action_navigation_folders_to_specificFolderMediaFragment"
+            app:destination="@id/specificFolderMusicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/specificFolderMusicFragment"
+        android:name="com.example.mmpplayer.music.folders.SpecificFolderMusicFragment"
+        android:label="fragment_specific_folder_media"
+        tools:layout="@layout/fragment_specific_folder_music" />
+    <fragment
+        android:id="@+id/musicFragmentHolder"
+        android:name="com.example.mmpplayer.music.MusicFragmentHolder"
+        android:label="MusicFragmentHolder"
+        tools:layout="@layout/fragment_music_holder"/>
+    <fragment
+        android:id="@+id/playlistsAllMusicFragment"
+        android:name="com.example.mmpplayer.music.playlists.PlaylistsAllMusicFragment"
+        android:label="fragment_playlists_all_music"
+        tools:layout="@layout/fragment_playlists_all_music" />
+
+</navigation>

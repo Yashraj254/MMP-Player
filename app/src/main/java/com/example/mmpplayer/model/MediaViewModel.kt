@@ -5,12 +5,16 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.mmpplayer.database.MyMediaRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MediaViewModel(context: Application, private val repository: MyMediaRepository) :
-    AndroidViewModel(context) {
-    // TODO: Implement the ViewModel
+@HiltViewModel
+class MediaViewModel @Inject constructor(private val repository: MyMediaRepository) :
+    ViewModel() {
+
     val allVideosList: LiveData<ArrayList<Media>> = liveData {
         emit(repository.getAllVideos())
     }
@@ -37,7 +41,4 @@ class MediaViewModel(context: Application, private val repository: MyMediaReposi
      fun getSpecificFolderMusic(folderId: String) = liveData<ArrayList<Media>> {
         emit(repository.getSpecificFolderMusic(folderId))
     }
-
-
-
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/video_nav"
+    app:startDestination="@id/navigation_videos">
+
+    <fragment
+        android:id="@id/navigation_videos"
+        android:name="com.example.mmpplayer.video.AllVideosFragment"
+        android:label="fragment_all_videos"
+        tools:layout="@layout/fragment_all_videos" />
+    <fragment
+        android:id="@id/navigation_video_folders"
+        android:name="com.example.mmpplayer.video.VideoFoldersFragment"
+        android:label="fragment_video_folders"
+        tools:layout="@layout/fragment_video_folders" >
+        <action
+            android:id="@+id/action_navigation_video_folders_to_specificFolderVideosFragment"
+            app:destination="@id/specificFolderVideosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/specificFolderVideosFragment"
+        android:name="com.example.mmpplayer.video.SpecificFolderVideosFragment"
+        android:label="SpecificFolderVideosFragment"
+        tools:layout="@layout/fragment_specific_folder_videos"/>
+    <fragment
+        android:id="@+id/videoFragmentHolder"
+        android:name="com.example.mmpplayer.video.VideoFragmentHolder"
+        android:label="VideoFragmentHolder"
+        tools:layout="@layout/fragment_videos_holder"/>
+</navigation>

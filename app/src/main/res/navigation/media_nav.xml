@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/media_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.mmpplayer.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_musicFragmentHolder"
+            app:destination="@id/musicFragmentHolder" />
+        <action
+            android:id="@+id/action_homeFragment_to_videoFragmentHolder"
+            app:destination="@id/videoFragmentHolder" />
+    </fragment>
+    <fragment
+        android:id="@+id/musicFragmentHolder"
+        android:name="com.example.mmpplayer.music.MusicFragmentHolder"
+        android:label="fragment_music_holder"
+        tools:layout="@layout/fragment_music_holder" />
+    <fragment
+        android:id="@+id/videoFragmentHolder"
+        android:name="com.example.mmpplayer.video.VideoFragmentHolder"
+        android:label="fragment_videos_holder"
+        tools:layout="@layout/fragment_videos_holder" />
+</navigation>

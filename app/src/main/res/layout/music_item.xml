@@ -6,6 +6,16 @@
     android:padding="5dp"
     android:gravity="center_vertical">
 
+    <ImageButton
+        android:id="@+id/btn_check"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+
+        android:background="#FFFFFF"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_check" />
+
     <ImageView
         android:id="@+id/iv_music"
         android:layout_width="45dp"
@@ -21,4 +31,5 @@
         android:padding="5dp"
         android:text="Music Name"
         android:textSize="18sp" />
+
 </LinearLayout>

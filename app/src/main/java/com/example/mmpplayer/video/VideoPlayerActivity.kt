@@ -69,13 +69,13 @@ class VideoPlayerActivity : AppCompatActivity(), GestureDetector.OnGestureListen
                 it.moveToFirst()
                 val path = it.getString(it.getColumnIndexOrThrow(MediaStore.Video.Media.DATA))
                 val file = File(path)
-                val video = Media(id = "",
+                val video = Media(0,id = "",
                     title = file.name,
                     path = path,
                     duration = 0L,
                     folderName = "",
                     size = 0L,
-                    uri = Uri.fromFile(file),
+                    uri = Uri.fromFile(file).toString(),
                     dateAdded = 0L)
                 videosList.add(video)
                 cursor.close()
@@ -132,6 +132,7 @@ class VideoPlayerActivity : AppCompatActivity(), GestureDetector.OnGestureListen
         if (brightness != 0)
             setScreenBrightness(brightness)
     }
+
 
     private fun createPlayer() {
         binding.tvVideoName.isSelected = true
@@ -203,6 +204,7 @@ class VideoPlayerActivity : AppCompatActivity(), GestureDetector.OnGestureListen
             binding.fullScreenButton.setImageResource(R.drawable.ic_video_fullscreen)
         }
     }
+
 
     private fun doubleTapEnable() {
         binding.apply {
@@ -293,7 +295,6 @@ class VideoPlayerActivity : AppCompatActivity(), GestureDetector.OnGestureListen
         lp.screenBrightness = d * value
         this.window.attributes = lp
     }
-
 
 }
 

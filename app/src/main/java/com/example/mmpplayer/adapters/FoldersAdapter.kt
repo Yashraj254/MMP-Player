@@ -41,26 +41,19 @@ class FoldersAdapter(private val mediaType: String, private val activity: Activi
 
             val foldersList = ArrayList(differ.currentList)
             val bundle = Bundle().apply {
-                putString("media_type", mediaType)
+
                 putString("folder_id", foldersList[position].id)
+                putString("folder_name", foldersList[position].folderName)
             }
-            if (mediaType == "Videos")
-                Navigation.findNavController(it)
+            when (mediaType) {
+                "Videos" -> Navigation.findNavController(it)
                     .navigate(R.id.action_navigation_video_folders_to_specificFolderVideosFragment,
                         bundle)
-            else
-                Navigation.findNavController(it)
+                "Music" -> Navigation.findNavController(it)
                     .navigate(R.id.action_navigation_folders_to_specificFolderMediaFragment,
                         bundle)
-
-
-//            val intent = Intent(activity,SpecificFolderMediaActivity::class.java)
-//            intent.putExtra("media_type", mediaType)
-//            intent.putExtra("position", position)
-//            intent.putExtra("folder_id", foldersList[position].id)
-//            activity.startActivity(intent)
+            }
         }
-
     }
 
     override fun getItemCount(): Int {
