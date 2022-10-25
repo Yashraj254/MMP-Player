@@ -1,4 +1,3 @@
-# MMP-Player
 
 <h1 align="center">MMP-Player</h1></br>
 <p align="center">  
@@ -12,14 +11,13 @@ A media player app based on modern Android tech-stacks and MVVM architecture. Pl
  
 </p>
 
-## Download
-
-
-## Screenshots
+## Previews
 <p align="center">
-
-
-
+<img src="previews/record5.gif" width="125" height = "275">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/record1.gif" width="125" height = "275">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/record2.gif" width="125" height = "275">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/record3.gif" width="125" height = "275">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/record4.gif" width="125" height = "275">&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 
 ## Tech stack & Open-source libraries
