@@ -1,7 +1,13 @@
+<<<<<<< HEAD
  plugins {
     id  'com.android.application'
      id("dagger.hilt.android.plugin")
 
+=======
+plugins {
+    id 'com.android.application'
+    id("dagger.hilt.android.plugin")
+>>>>>>> 14589f75d1b7f4f8311ef680b7ea7c9a2c3f027f
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-kapt'
@@ -34,7 +40,7 @@ android {
         jvmTarget = '1.8'
 
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
     namespace 'com.example.mmpplayer'
