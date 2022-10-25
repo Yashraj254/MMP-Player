@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi
 import com.example.mmpplayer.model.Folder
 import com.example.mmpplayer.model.Media
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import java.io.File
 import javax.inject.Inject
 
@@ -212,7 +213,6 @@ class MyMediaDataSource @Inject constructor(private val contentResolver: Content
             MediaStore.Audio.Media.SIZE,
             MediaStore.Audio.Media.DATE_ADDED
         )
-
         val cursor = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
             projection,
             selection,

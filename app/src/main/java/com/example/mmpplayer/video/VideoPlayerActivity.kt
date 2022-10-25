@@ -7,6 +7,7 @@ import android.content.res.Resources
 import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
+import android.os.Build.VERSION_CODES.R
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
@@ -52,7 +53,7 @@ class VideoPlayerActivity : AppCompatActivity(), GestureDetector.OnGestureListen
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        setTheme(R.style.Theme)
+        setTheme(com.example.mmpplayer.R.style.Theme)
         setContentView(binding.root)
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager;
 
@@ -95,7 +96,7 @@ class VideoPlayerActivity : AppCompatActivity(), GestureDetector.OnGestureListen
             override fun onPlaybackStateChanged(playbackState: Int) {
                 super.onPlaybackStateChanged(playbackState)
                 if (playbackState == Player.STATE_ENDED) {
-                    binding.playPauseButton.setImageResource(R.drawable.ic_video_play)
+                    binding.playPauseButton.setImageResource(com.example.mmpplayer.R.drawable.ic_video_play)
                 }
             }
         })
@@ -126,7 +127,6 @@ class VideoPlayerActivity : AppCompatActivity(), GestureDetector.OnGestureListen
                 ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
         }
     }
-
     override fun onResume() {
         super.onResume()
         if (brightness != 0)
@@ -165,12 +165,12 @@ class VideoPlayerActivity : AppCompatActivity(), GestureDetector.OnGestureListen
 
     private fun playVideo() {
         player.play()
-        binding.playPauseButton.setImageResource(R.drawable.ic_video_pause)
+        binding.playPauseButton.setImageResource(com.example.mmpplayer.R.drawable.ic_video_pause)
     }
 
     private fun pauseVideo() {
         player.pause()
-        binding.playPauseButton.setImageResource(R.drawable.ic_video_play)
+        binding.playPauseButton.setImageResource(com.example.mmpplayer.R.drawable.ic_video_play)
     }
 
     private fun nextVideo() {
@@ -197,11 +197,12 @@ class VideoPlayerActivity : AppCompatActivity(), GestureDetector.OnGestureListen
         if (enable) {
             binding.videoPlayer.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
             player.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING
-            binding.fullScreenButton.setImageResource(R.drawable.ic_exit_fullscreen)
+            binding.fullScreenButton.setImageResource(com.example.mmpplayer.R.drawable.ic_exit_fullscreen)
         } else {
             binding.videoPlayer.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
             player.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT
-            binding.fullScreenButton.setImageResource(R.drawable.ic_video_fullscreen)
+            binding.fullScreenButton.setImageResource(com.example.mmpplayer.R.drawable.ic_video_fullscreen)
+
         }
     }
 
@@ -239,17 +240,28 @@ class VideoPlayerActivity : AppCompatActivity(), GestureDetector.OnGestureListen
         player.release()
     }
 
-    override fun onDown(p0: MotionEvent?): Boolean = false
-    override fun onShowPress(p0: MotionEvent?) = Unit
 
-    override fun onSingleTapUp(p0: MotionEvent?): Boolean = false
 
-    override fun onScroll(
-        event: MotionEvent?,
-        event1: MotionEvent?,
-        distanceX: Float,
-        distanceY: Float,
-    ): Boolean {
+
+
+
+
+
+
+    private fun setScreenBrightness(value: Int) {
+        val d = 1.0f / 100
+        val lp = this.window.attributes
+        lp.screenBrightness = d * value
+        this.window.attributes = lp
+    }
+
+    override fun onDown(p0: MotionEvent): Boolean = false
+
+    override fun onShowPress(p0: MotionEvent) = Unit
+
+    override fun onSingleTapUp(p0: MotionEvent): Boolean = false
+
+    override fun onScroll(event: MotionEvent, p1: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
         val screenWidth = Resources.getSystem().displayMetrics.widthPixels
         if (abs(distanceX) < abs(distanceY)) {
             if (event!!.x < screenWidth / 2) {
@@ -285,16 +297,10 @@ class VideoPlayerActivity : AppCompatActivity(), GestureDetector.OnGestureListen
         return true
     }
 
-    override fun onLongPress(p0: MotionEvent?) = Unit
+    override fun onLongPress(p0: MotionEvent)= Unit
 
-    override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean = false
+    override fun onFling(p0: MotionEvent, p1: MotionEvent, p2: Float, p3: Float): Boolean = false
 
-    private fun setScreenBrightness(value: Int) {
-        val d = 1.0f / 100
-        val lp = this.window.attributes
-        lp.screenBrightness = d * value
-        this.window.attributes = lp
-    }
 
 }
 

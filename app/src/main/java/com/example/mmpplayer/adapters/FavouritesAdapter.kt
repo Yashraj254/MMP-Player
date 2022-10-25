@@ -1,7 +1,6 @@
 package com.example.mmpplayer.adapters
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.text.format.DateFormat
 import android.view.LayoutInflater
@@ -10,15 +9,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.mmpplayer.R
 import com.example.mmpplayer.databinding.VideoItemBinding
 import com.example.mmpplayer.model.Media
 import com.example.mmpplayer.music.MusicPlayerActivity
-import com.example.mmpplayer.video.VideoPlayerActivity
 import java.text.DecimalFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class FavouritesAdapter(
     private val showDeleteMenu: (Boolean) -> Unit,

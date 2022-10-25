@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.mmpplayer.database.MyMediaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,7 +25,7 @@ class MediaViewModel @Inject constructor(private val repository: MyMediaReposito
         emit(repository.getAllMusic())
     }
 
-    val videoFoldersList: LiveData<ArrayList<Folder>> = liveData {
+    val videoFoldersList: LiveData<ArrayList<Folder>> = liveData(Dispatchers.IO) {
         emit(repository.getAllVideoFolders())
     }
 
@@ -33,12 +34,12 @@ class MediaViewModel @Inject constructor(private val repository: MyMediaReposito
         emit(repository.getAllMusicFolders())
     }
 
-    fun getSpecificFolderVideos(folderId: String) = liveData<ArrayList<Media>> {
+    fun getSpecificFolderVideos(folderId: String) = liveData {
         emit(repository.getSpecificFolderVideos(folderId))
     }
 
      @RequiresApi(Build.VERSION_CODES.Q)
-     fun getSpecificFolderMusic(folderId: String) = liveData<ArrayList<Media>> {
+     fun getSpecificFolderMusic(folderId: String) = liveData {
         emit(repository.getSpecificFolderMusic(folderId))
     }
 }

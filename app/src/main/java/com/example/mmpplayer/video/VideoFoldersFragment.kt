@@ -31,7 +31,7 @@ class VideoFoldersFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentVideoFoldersBinding.inflate(inflater, container, false)
         val view = binding.root
-        requireActivity().title = "Videos Folders"
+        requireActivity().title = "Video Folders"
 
         adapter = FoldersAdapter("Videos", requireActivity())
         getVideoFolders()
