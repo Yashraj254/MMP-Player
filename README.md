@@ -13,11 +13,11 @@ A media player app based on modern Android tech-stacks and MVVM architecture. Pl
 
 ## Previews
 <p align="center">
-<img src="previews/record5.gif" width="140" height = "290">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="previews/record1.gif" width="140" height = "290">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="previews/record2.gif" width="140" height = "290">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="previews/record3.gif" width="140" height = "290">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="previews/record4.gif" width="140" height = "290">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/record5.gif" alt="Music player screen" width="140" height = "290">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/record1.gif" alt="All videos and folders screen" width="140" height = "290">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/record2.gif" alt="Video player screen" width="140" height = "290">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/record3.gif" alt="All music,folders,favourites,playlists screen" width="140" height = "290">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="previews/record4.gif" alt="Music player in notification screen" width="140" height = "290">&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 
 ## Tech stack & Open-source libraries
