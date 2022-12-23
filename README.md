@@ -1,7 +1,12 @@
 
 <h1 align="center">MMP-Player</h1></br>
 <p align="center">  
-A media player app based on modern Android tech-stacks and MVVM architecture. Play videos or music store in your local phone storage. Create music playlists and add to your favorites.
+
+A user interface that displays a list of media files that are stored on the device.<br>
+The ability to create and manage playlists of media files.<br>
+Support for a variety of media file formats, such as MP3, MP4, and WAV.<br>
+Smooth and seamless playback of media files without glitches or delays.<br>
+
 </p>
 </br>
 
