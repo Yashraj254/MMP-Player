@@ -1,7 +1,7 @@
 
 <h1 align="center">MMP-Player</h1></br>
 <p align="center">  
-A multimedia player app that plays music and videos.
+A multimedia player app that plays music and videos.<br>
 A user interface that displays a list of media files that are stored on the device.<br>
 The ability to create and manage playlists of media files.<br>
 Support for a variety of media file formats, such as MP3, MP4, and WAV.<br>
